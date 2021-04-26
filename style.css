@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    font-family: 'Lato', sans-serif;
+    font-size: 62.5%;
+}
+
+:root{
+    --background: #f1f1f1;
+    --boxcolor: #ffffff;
+    --headercolor: #ffffff;
+    --main_brand: #ea1c2c;
+    --fontcolor: #454545;
+    --overlay: #151515d2;
+}
+
+.shadow{
+    box-shadow: 0px 4px 8px #474747d8;
+}
+
+body{
+    background-color: var(--background);
+}
+
+header{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--headercolor);
+}
+
+header .logo{
+    width: 150px;
+    height: 80px;
+    background-image: url('https://daltonefectivo.com.mx/img/logo/des.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+header h1{
+    font-size: 3rem;
+    color: var(--fontcolor);
+    text-align: center;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 80px;
+}
+
+header .main-nav ul{
+    list-style-type: none;
+}
+
+header .main-nav ul li a{
+    display: block;
+    height: 30px;
+    padding: 10px;
+    align-content: center;
+    text-decoration: none;
+    color: var(--fontcolor);
+}
+
+/* main{
+
+} */
+
+main .directorio {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    max-width: 600px;
+    margin: 50px auto 50px;
+}
+
+.directorio div{
+    padding: 10px;
+    display: flex;
+    margin: 5px 0;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--boxcolor);
+    border-radius: 11px;
+}
+
+.directorio div p{
+    font-size: 1.2rem;
+}
+
+.directorio div h2{
+    position: absolute;
+    left: 10%;
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--fontcolor);
+}
+
+.directorio div button{
+    position: absolute;
+    right: 10px;
+    padding: 3px;
+    border: none;
+    border-radius: 3px;
+    background: #151515;
+    color: var(--background);
+    font-size: 1.6rem;
+}
+
+.directorio .botonarea{
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.directorio .grid{
+    display: grid;
+    grid-gap: 20px;
+    grid-auto-flow: column;
+}
+
+.directorio .grid p{
+    text-align: center;
+}
+
+.directorio .employee{
+    display: none;
+}
+
+.overlay{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: var(--overlay);
+}
+
+.overlay .actividades_overlay{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #101010;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+html .hidden{
+    display: none;
+}
+
+.overlay .actividades_overlay p{
+    margin-top: 15px;
+    color: var(--background);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    header h1{
+        font-size: 1.6rem;
+        /* margin-left: 30px; */
+    }
+
+    header .logo{
+        width: 100px;
+        height: 80px;
+        /* margin-left: 10px; */
+    }
+
+    main .directorio {
+        width: 95%;
+    }
+
+    .directorio .botonarea h2{
+        font-size: 1.6rem;
+    }
+
+    .directorio .grid p{
+        font-size: 1.2rem;
+    }
+}
+}
