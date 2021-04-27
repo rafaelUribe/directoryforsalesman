@@ -92,8 +92,8 @@ const setVariables = () => {
     function transpose(matrix) {
         return matrix[0].map((col, i) => matrix.map(row => row[i]));
     }
-    // invocamos la funcion pasandole el array de la peticion
-    var transp = transpose(act)
+    // invocamos la funcion pasandole el array de la peticion y ordenando con sort() por nombre
+    var transp = transpose(act).sort()
     // para cada array de area con actividades creamos un objeto de la clase area que le meta el nombre (primer valor de la columna de la hoja de calculo) y las actividades, pero filtrando las que tienen una string vacia o un valor undefined.
     for(let array of transp){
         let filteredarray = array.filter( value => value != undefined).filter( value => value.length > 0)
@@ -123,7 +123,7 @@ const setVariables = () => {
                 d.innerHTML +=
                 // ESTO HAY QUE HACERLO MEJOR
                 `<div class='${empleado.area.toLowerCase().replace(' ','').replace(' ','')} employee grid'>
-                    <p>${empleado.nombre}</p><p>extensión: ${extension}</p><p>${correo}</p>
+                    <p>${empleado.nombre}</p><p>extensión: <span>${extension}</span></p><p>${correo}</p>
                 </div>`
             }
         }
@@ -154,9 +154,5 @@ const obtenerDatos = async (MAIN_INFO_URL, ACTIVITIES_URL) => {
 }
 
 obtenerDatos(MAIN_INFO_URL, ACTIVITIES_URL)
-
-
-
-
 
 
