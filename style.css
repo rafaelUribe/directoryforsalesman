@@ -164,7 +164,7 @@ main .directorio {
 }
 
 .overlay .actividades_overlay{
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -213,5 +213,9 @@ html .hidden{
         text-align: center;
         font-size: 1.6rem;
         color: var(--main_brand);
+    }
+    
+    .overlay .actividades_overlay{
+        width: 310px;
     }
 }
