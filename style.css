@@ -164,7 +164,7 @@ main .directorio {
 }
 
 .overlay .actividades_overlay{
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,7 +185,7 @@ html .hidden{
     text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 400px) {
     header h1{
         font-size: 1.6rem;
         /* margin-left: 30px; */
@@ -202,7 +202,7 @@ html .hidden{
     }
 
     .directorio .botonarea h2{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
     .directorio .grid p{
@@ -213,5 +213,9 @@ html .hidden{
         text-align: center;
         font-size: 1.6rem;
         color: var(--main_brand);
+    }
+    
+    .overlay .actividades_overlay{
+        width: 290px;
     }
 }

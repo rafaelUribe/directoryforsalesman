@@ -156,7 +156,3 @@ const obtenerDatos = async (MAIN_INFO_URL, ACTIVITIES_URL) => {
 obtenerDatos(MAIN_INFO_URL, ACTIVITIES_URL)
 
 
-
-
-
-
