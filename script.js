@@ -3,13 +3,17 @@ const shade = document.getElementById('overlay')
 var over = document.getElementById('actividades_over')
 var buttons
 
-const MAIN_INFO_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/hoja!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
+const MAIN_INFO_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/gdl!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
 const ACTIVITIES_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/actividades!A:P?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
+const URL_SLP = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/slp!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
+const URL_CDMX = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/cdmx!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
 
 const pintEverything = () => console.log(areas)
 const toggleHidden = (elemento) => elemento.classList.toggle('employee')
 
 var main
+var mainslp
+var maincdmx
 var act
 var areas = []
 var empleados = []
@@ -25,11 +29,12 @@ class Area {
 }
 
 class Empleado{
-    constructor(area, nombre, extension, correo){
+    constructor(area, nombre, extension, correo, region){
         this.area = area
         this.nombre = nombre
         this.extension = extension
         this.correo = correo
+        this.region = region
     }
 }
 
@@ -83,15 +88,32 @@ const toggleEmpleadosPorNombre = evento => {
     }
 }
 
+const addSlp = () => {
+    
+}
+
+const transpose = matrix => {
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+}
+
+const addGdl = () => {
+
+}
+
 const setVariables = () => {
     // creamos un array de empleados y llenamos con objetos de la clase empleado que traemos desde la varibale main
-    for(let i = 1; i < main.length; i++){
-        empleados.push(new Empleado(main[i][0].toUpperCase(), main[i][1], main[i][2], main[i][3]))
+    // for(let i = 0; i < main.length; i++){
+    //     empleados.push(new Empleado(main[i][0].toUpperCase(), main[i][1], main[i][2], main[i][3].trim(), 'gdl'))
+    // }
+
+    for(let persona of main) {
+        empleados.push(new Empleado(persona[0], persona[1], persona[2], persona[3], 'gdl'))
+    }
+
+    for(let i = 1; i < mainslp.length; i++){
+
     }
     // transponemos el array que recibimos con las areas y sus actividades
-    function transpose(matrix) {
-        return matrix[0].map((col, i) => matrix.map(row => row[i]));
-    }
     // invocamos la funcion pasandole el array de la peticion y ordenando con sort() por nombre
     var transp = transpose(act).sort()
     // para cada array de area con actividades creamos un objeto de la clase area que le meta el nombre (primer valor de la columna de la hoja de calculo) y las actividades, pero filtrando las que tienen una string vacia o un valor undefined.
@@ -145,8 +167,13 @@ const obtenerDatos = async (MAIN_INFO_URL, ACTIVITIES_URL) => {
     try{
         main = await fetchData(MAIN_INFO_URL);
         act = await fetchData(ACTIVITIES_URL);
+        mainslp = await fetchData(URL_SLP);
+        maincdmx = await fetchData(URL_CDMX)
+        main.values.splice(0, 1)
         main = main.values
         act = act.values
+        mainslp = mainslp.values
+        maincdmx = maincdmx.values
         setVariables()
     } catch (error) {
         console.error(error);
