@@ -91,7 +91,7 @@ main .directorio {
     margin: 50px auto 50px;
 }
 
-.directorio div{
+.area_container div{
     padding: 10px;
     display: flex;
     margin: 5px 0;
@@ -126,6 +126,7 @@ main .directorio {
 }
 
 .directorio .botonarea{
+    width: 100%;
     padding: 20px;
     position: relative;
     display: flex;
@@ -145,10 +146,6 @@ main .directorio {
 .directorio .grid p span{
     color: var(--main_brand);
     font-weight: 700;
-}
-
-.directorio .employee{
-    display: none;
 }
 
 .overlay{
@@ -184,6 +181,45 @@ html .hidden{
     font-size: 1.2rem;
     text-align: center;
 }
+
+.region-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(22, 21, 21, 0.808);
+}
+
+.region-overlay h2, .region-overlay div{
+    color: var(--background);
+    text-align: center;
+}
+
+.region-overlay div {
+    background-color: black;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.region-overlay .gdl-button{
+    background-image: linear-gradient(to right top, #783aae, #7246b3, #6c50b8, #6759bb, #6362be, #5570c7, #487cce, #3d88d2, #229ad9, #19abdc, #32bbdb, #53cad9);
+}
+
+.region-overlay .slp-button{
+    background-image: linear-gradient(to right top, #ae3a3a, #ba3950, #c23b68, #c64282, #c44d9d, #be50ab, #b655b8, #aa5bc6, #9d58cb, #8e56cf, #7c54d4, #6653d9);
+}
+
+.region-overlay .cdmx-button{
+    background-image: linear-gradient(to right top, #31b4ac, #2db7a4, #31ba9b, #3cbc8f, #4abe82, #51c17b, #59c473, #62c66a, #64cb65, #67d060, #6ad45a, #6ed953);
+}
+
+
 
 @media (max-width: 400px) {
     header h1{
