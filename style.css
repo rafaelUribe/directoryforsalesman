@@ -79,16 +79,29 @@ header .main-nav ul li a{
     color: var(--fontcolor);
 }
 
-/* main{
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-} */
+main #select-region{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--fontcolor);
+    color: var(--boxcolor);
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
 
 main .directorio {
     display: flex;
     flex-direction: column;
     width: 70%;
     max-width: 600px;
-    margin: 50px auto 50px;
+    margin: 20px auto 50px;
 }
 
 .area_container div{
@@ -200,22 +213,27 @@ html .hidden{
     text-align: center;
 }
 
-.region-overlay div {
+.region-overlay .gdl-button{
     background-color: black;
     padding: 30px;
     margin-top: 20px;
     border-radius: 20px;
-}
-
-.region-overlay .gdl-button{
     background-image: linear-gradient(to right top, #783aae, #7246b3, #6c50b8, #6759bb, #6362be, #5570c7, #487cce, #3d88d2, #229ad9, #19abdc, #32bbdb, #53cad9);
 }
 
 .region-overlay .slp-button{
+    background-color: black;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 20px;
     background-image: linear-gradient(to right top, #ae3a3a, #ba3950, #c23b68, #c64282, #c44d9d, #be50ab, #b655b8, #aa5bc6, #9d58cb, #8e56cf, #7c54d4, #6653d9);
 }
 
 .region-overlay .cdmx-button{
+    background-color: black;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 20px;
     background-image: linear-gradient(to right top, #31b4ac, #2db7a4, #31ba9b, #3cbc8f, #4abe82, #51c17b, #59c473, #62c66a, #64cb65, #67d060, #6ad45a, #6ed953);
 }
 

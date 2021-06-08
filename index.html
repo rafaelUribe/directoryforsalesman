@@ -13,7 +13,7 @@
         <div class="logo" id="logo"></div>
         <div>
             <h1 class="title" id="title">DIRECTORIO DES</h1>
-            <h6>(33) 5000 6700</h6>
+            <h6>33 5000 6700</h6>
         </div>
         <!-- <nav class="main-nav">
             <ul>
@@ -22,6 +22,7 @@
         </nav> -->
     </header>
     <main>
+        <button id='select-region'>Cambiar región</button>
         <section id="directorio" class="directorio">
 
         </section>
@@ -31,10 +32,11 @@
     </footer>
 </body>
 <div class="region-overlay" id="region-overlay">
-    <h2>Selecciona Región<h2>
+    <h2 class='selecciona-region-h1' id="selecciona-region-h1">Selecciona Región<h2>
     <div class="gdl-button" id="gdl-button">Guadalajara</div>
-    <div class="slp-button" id="slp-button">Ciudad de México</div>
-    <div class="cdmx-button" id="cdmx-button">San Luis Potosí</div>
+    <div class="cdmx-button" id="cdmx-button">Ciudad de México</div>
+    <div class="slp-button" id="slp-button">San Luis Potosí</div>
+    <div  class="loading hidden" id="loading">Cargando...</div>
 </div>
 <div class="overlay hidden" id="activities-overlay">
     <div class="actividades_overlay" id="actividades_over">

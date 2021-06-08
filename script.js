@@ -2,6 +2,11 @@ const gdl_button = document.getElementById('gdl-button')
 const slp_button = document.getElementById('slp-button')
 const cdmx_button = document.getElementById('cdmx-button')
 const region_overlay = document.getElementById('region-overlay')
+const region_selector = document.getElementById('select-region')
+const loading_msg = document.getElementById('loading')
+const region_selector_h1 = document.getElementById('selecciona-region-h1')
+const region_phone_number = document.querySelector('h6')
+
 
 const d = document.getElementById('directorio')
 const shade = document.getElementById('activities-overlay')
@@ -12,7 +17,7 @@ const ACTIVITIES_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3O
 const URL_SLP = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/slp!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
 const URL_CDMX = 'https://sheets.googleapis.com/v4/spreadsheets/1R4zsBES3OfzXTUC4E9H0RuMIpTzkKVtQgLWf7As0Gv4/values/cdmx!A:D?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
 
-var overlay_buttons
+var overlay_buttons = []
 var areas = []
 var empleados = []
 var region_areas = []
@@ -53,14 +58,13 @@ const fetchData = (url) => {
 }
 
 const hideOverlay = () => {
-    console.log('hola')
     shade.classList.toggle('hidden')
 }
 
 shade.addEventListener('click', hideOverlay)
 
 const toggleOverlay = evento => {
-    
+
     shade.classList.toggle('hidden')
     let area_id = evento.target.parentElement.id
     let selected = areas.filter( a => a.id === area_id )
@@ -119,7 +123,7 @@ const getAreaTemplate = (region_areas) => {
         n.id = a.id
         n.innerHTML =   `
                             <h2>${a.nombre}</h2>
-                            <button class='button_overlay'>Funciones</button>
+                            <button class='button_overlay' onclick='event.stopPropagation()'>Funciones</button>
                         `
         let container = document.createElement('div')
         container.classList.add('area_container')
@@ -170,68 +174,6 @@ const loadRegionalDirectory = function(regionaldata) {
     
 }
 
-// const setVariables = () => {
-//     // creamos un array de empleados y llenamos con objetos de la clase empleado que traemos desde la varibale main
-//     // for(let i = 0; i < main.length; i++){
-//     //     empleados.push(new Empleado(main[i][0].toUpperCase(), main[i][1], main[i][2], main[i][3].trim(), 'gdl'))
-//     // }
-
-//     for(let persona of main) {
-//         empleados.push(new Empleado(persona[0], persona[1], persona[2], persona[3], 'gdl'))
-//     }
-
-//     for(let i = 1; i < mainslp.length; i++){
-
-//     }
-//     // transponemos el array que recibimos con las areas y sus actividades
-//     // invocamos la funcion pasandole el array de la peticion y ordenando con sort() por nombre
-//     var transp = transpose(act).sort()
-//     // para cada array de area con actividades creamos un objeto de la clase area que le meta el nombre (primer valor de la columna de la hoja de calculo) y las actividades, pero filtrando las que tienen una string vacia o un valor undefined.
-//     for(let array of transp){
-//         let filteredarray = array.filter( value => value != undefined).filter( value => value.length > 0)
-//         let areaname = filteredarray.shift().toUpperCase()
-//         let employees = empleados.filter( employee => employee.area == areaname)
-//         areas.push(new Area(areaname, filteredarray, employees))
-//     }
-//     // renderizamos el directorio
-//     for(let area of areas){
-//         if(area.empleados.length > 0){
-//             let areaHTML = 
-//             `<div class='shadow botonarea' id='${area.nombre.toLowerCase().replace(' ','').replace(' ','')}'>
-//                 <h2>${area.nombre}</h2>
-//                 <button class='button_overlay'>Funciones</button>
-//             </div>`
-//             d.innerHTML += areaHTML
-//             for(let empleado of area.empleados){
-//                 let extension = empleado.extension
-//                 let correo = empleado.correo
-//                 if(!empleado.extension){
-//                     extension = 'no tiene'
-//                 }
-//                 if(!empleado.correo){
-//                     correo = 'no cuenta con correo'
-//                 }
-//                 d.innerHTML +=
-//                 // ESTO HAY QUE HACERLO MEJOR
-//                 `<div class='${empleado.area.toLowerCase().replace(' ','').replace(' ','')} employee grid'>
-//                     <p>${empleado.nombre}</p><p>extensión: <span>${extension}</span></p><p>${correo}</p>
-//                 </div>`
-//             }
-//         }
-//     }
-//     buttons = document.getElementsByClassName('button_overlay')
-//     for(let boton of buttons){
-//         boton.addEventListener('click', toggleOverlay)
-//     }
-//     for(let div of d.children){
-//         if(div.classList.contains('botonarea'))
-//         div.addEventListener('click', toggleEmpleados)
-//         div.firstElementChild.addEventListener('click', toggleEmpleadosPorNombre)
-//     }
-// }
-
-// shade.addEventListener('click', toggleOverlay)
-
 const obtenerDatosAct = async (URL) => {
     try{
         act = await fetchData(URL);
@@ -260,7 +202,11 @@ const setAreaId = name => {
 }
 
 const setLoadingText = () => {
-    region_overlay.innerHTML = `<h2>Cargando...<h2>`
+    gdl_button.classList.toggle('hidden')
+    slp_button.classList.toggle('hidden')
+    cdmx_button.classList.toggle('hidden')
+    region_selector_h1.classList.toggle('hidden')
+    loading_msg.classList.toggle('hidden')
 }
 
 const setAreas = async function(URL) {
@@ -284,18 +230,33 @@ const getRegionData = async function(URL) {
 
 const loadGDL = () => {
     setAreas(GDL_URL)
-}
+    region_phone_number.innerText = '33 5000 6700'
+} 
 
 const loadSLP = () => {
     setAreas(URL_SLP)
+    region_phone_number.innerText = '44 4834 3333'
 }
 
 const loadCDMX = () => {
     setAreas(URL_CDMX)
+    region_phone_number.innerText = '55 4124 6000'
+}
+
+const selectRegion = () => {
+    d.innerHTML = ''
+    overlay_buttons = []
+    areas = []
+    empleados = []
+    region_areas = []
+    areas_templates = []
+    setLoadingText()
+    region_overlay.classList.toggle('hidden')
 }
 
 gdl_button.addEventListener('click', loadGDL)
 slp_button.addEventListener('click', loadSLP)
-cdmx_button.addEventListener('click', loadCDMX) 
+cdmx_button.addEventListener('click', loadCDMX)
+region_selector.addEventListener('click', selectRegion)
 
 
