@@ -70,7 +70,7 @@ const toggleOverlay = evento => {
     let selected = areas.filter( a => a.id === area_id )
     let area = selected.shift()
     let actividades = area.actividades
-    over.innerHTML = `<h4 style='font-size: 1.6rem; color: white; margin-bottom: 30px;'>${area.nombre}</h4>`
+    over.innerHTML = `<h4 style='font-size: 1.6rem; color: white; margin-bottom: 30px; text-align: center;'>${area.nombre}</h4>`
     for(let actividad of actividades){
         over.innerHTML += `<p>${actividad}</p>`
     }
@@ -126,7 +126,7 @@ const getAreaTemplate = (region_areas) => {
         n.classList.add('shadow', 'botonarea')
         n.id = a.id
         n.innerHTML =   `
-                            <h2>${a.nombre}</h2>
+                            <h2 onclick='event.stopPropagation()'>${a.nombre}</h2>
                             <button class='button_overlay' onclick='event.stopPropagation()'>Funciones</button>
                         `
         let container = document.createElement('div')

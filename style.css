@@ -239,7 +239,7 @@ html .hidden{
 
 
 
-@media (max-width: 400px) {
+@media (max-width: 415px) {
     header h1{
         font-size: 1.6rem;
         /* margin-left: 30px; */
@@ -255,8 +255,16 @@ html .hidden{
         width: 95%;
     }
 
-    .directorio .botonarea h2{
+    html main .directorio .botonarea{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html main .directorio .botonarea h2{
+        margin-left: 0 auto;
         font-size: 1.4rem;
+        text-align: center;
     }
 
     .directorio .grid p{
@@ -271,5 +279,9 @@ html .hidden{
     
     .overlay .actividades_overlay{
         width: 290px;
+    }
+
+    html main .directorio div .button_overlay{
+        display: none; 
     }
 }
