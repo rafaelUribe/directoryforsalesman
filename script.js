@@ -91,7 +91,11 @@ const getEmployeeTemplates = employees => {
         let n = document.createElement('div')
         n.classList.add(e.area.id, 'employee', 'grid')
         n.id = e.nombre
-        n.innerHTML = `<p>${e.nombre}</p><p>extensión: <span>${e.extension}</span></p><p>${e.correo}</p>`
+        if(e.extension){
+            n.innerHTML = `<p>${e.nombre}</p><p>extensión: <span>${e.extension}</span></p><p>${e.correo}</p>`
+        } else {
+            n.innerHTML = `<p>${e.nombre}</p><p>${e.correo}</p>`
+        }
         templates.push(n)
     }
     return templates
